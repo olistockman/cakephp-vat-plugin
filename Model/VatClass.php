@@ -26,6 +26,17 @@ class VatClass extends VatAppModel {
                 )
              ),
         );    
-    
+
+ /**
+  * HasMany Associations
+  * 
+  * @var array
+  */       
+        public $hasMany = array(
+            'vatRate' => array(
+                'className' => 'vatRate',
+                'foreignKey' => 'vat_class_id',
+            )
+        );
 }
 

@@ -47,6 +47,17 @@ class VatRate extends VatAppModel {
                 ),
              ),
          );  
-    
+ 
+/**
+  * BelongsTo Associations
+  * 
+  * @var array
+  */       
+        public $belongsTo = array(
+            'vatClass' => array(
+                'className' => 'vatClass',
+                'foreignKey' => 'vat_class_id',
+            )
+        );    
 }
 
