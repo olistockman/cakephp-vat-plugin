@@ -1,13 +1,31 @@
 <?php
 
-class VatAppModel extends AppModel {
+class VatClass extends VatAppModel {
+
 /**
- * Table Prefix
- *
- * @var string
+ * Validation
+ * 
+ * @var array
  */
-    
-    public $tablePrefix = 'vat_';
+
+        public $validate = array(
+            'name' => array(
+                'required' => array(
+                    'rule' => array('alphaNumeric'),
+                    'message' => 'Cannot continue without a name',
+                    'required' => true,
+                    'allowEmpty' => false,
+                ),
+             ),
+             'code' => array(
+                'required' => array(
+                    'rule' => array('alphaNumeric'),
+                    'message' => 'A two letter/digit code is required',
+                    'required' => true,
+                    'allowEmpty' => false
+                )
+             ),
+        );    
     
 }
 
