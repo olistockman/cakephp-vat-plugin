@@ -54,8 +54,8 @@ class VatRate extends VatAppModel {
   * @var array
   */       
         public $belongsTo = array(
-            'vatClass' => array(
-                'className' => 'vatClass',
+            'VatClass' => array(
+                'className' => 'Vat.VatClass',
                 'foreignKey' => 'vat_class_id',
             )
         );    
