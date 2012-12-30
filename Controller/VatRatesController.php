@@ -34,18 +34,11 @@ class VatRatesController extends VatAppController {
         }
         
         $classes = $this->VatRate->VatClass->classesByCountry($country_code);
-        
-        pr($classes);
-        
+
         if ($this->request->is('post')) {
-            
-            pr($this->request->data);
-            
             if ($this->VatRate->saveAll($this->request->data['VatRate'])) {
                 $this->Session->setFlash('Rates Saved');
             } else {
-                pr($this->VatRate->validationErrors);
-                pr($this->VatRate->invalidFields);
                 $this->Session->setFlash('Rates failed to Save');
             }
         }
@@ -65,8 +58,6 @@ class VatRatesController extends VatAppController {
             if ($this->VatRate->saveAll($this->request->data)) {
                 $this->Session->setFlash('Rate Saved');
             } else {
-                pr($this->VatRate->validationErrors);
-                pr($this->VatRate->invalidFields);
                 $this->Session->setFlash('Rate failed to Save');
             }
         } else {

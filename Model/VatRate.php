@@ -74,8 +74,6 @@ class VatRate extends VatAppModel {
             if($country_code && $class_code && $date > '1901-01-01') {
                 
                 $vat_class = $this->VatClass->classByCountryAndCode($country_code, $class_code);
-                pr('VAT Class');
-                pr($vat_class);
                 
                 if ($vat_class) {
                     $rate = $this->find('first', array(
@@ -90,8 +88,6 @@ class VatRate extends VatAppModel {
                                 'recursive' => -1,
                     ));
                     
-                    pr('VAT Rate');
-                    pr($rate['VatRate']['rate']);
                     return $rate['VatRate']['rate'];
                     
                 } else {
