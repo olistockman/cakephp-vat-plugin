@@ -3,6 +3,5 @@
     echo $this->Form->input('VatRate.' . $prefix . '.vat_class_id', array('type' => 'hidden', 'value' => $class_id));
     echo $this->Form->input('VatRate.' . $prefix . '.rate');
     echo $this->Form->input('VatRate.' . $prefix . '.start_date');
-    echo $this->Form->input('VatRate.' . $prefix . '.end_date', array('empty' => '--'));
     echo '<br />';
 ?>

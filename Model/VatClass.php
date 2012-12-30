@@ -33,6 +33,14 @@ class VatClass extends VatAppModel {
                     'allowEmpty' => false
                 )
              ),
+             'area' => array(
+                'alpha' => array(
+                    'rule' => array('alphaNumeric'),
+                    'message' => 'Enter State/County information',
+                    'required' => false,
+                    'allowEmpty' => true
+                )
+             ),
         );    
 
  /**
@@ -58,6 +66,32 @@ class VatClass extends VatAppModel {
         
             if($country_code) {
                 return $this->findAllByCountryCode($country_code, array('id', 'name'), array(), null, null, -1);
+            } else {
+                return false;
+            }
+            
+        }
+
+  /**
+  * Class by Country and Class Code
+  * Find all clases for a country
+  * 
+  * @param string $country_code
+  * @param string $class_code
+  * @return array
+  */       
+        public function classByCountryAndCode($country_code, $class_code) {
+        
+            if($country_code && $class_code) {
+                
+                $id = $this->findByCountryCodeAndCode($country_code, $class_code, array('id'));
+                
+                if ($id) {
+                    return $id['VatClass']['id'];
+                } else {
+                    return false;
+                }                   
+                
             } else {
                 return false;
             }

@@ -59,5 +59,50 @@ class VatRate extends VatAppModel {
                 'foreignKey' => 'vat_class_id',
             )
         );    
+ 
+  /**
+  * Class by Country and Class Code
+  * Find all clases for a country
+  * 
+  * @param string $country_code
+  * @param string $class_code
+  * @param date $date (in MySQL format Y-m-d) 
+  * @return array
+  */       
+        public function rateByCountryAndClass($country_code = null, $class_code = null, $date = '1901-01-01') {
+        
+            if($country_code && $class_code && $date > '1901-01-01') {
+                
+                $vat_class = $this->VatClass->classByCountryAndCode($country_code, $class_code);
+                pr('VAT Class');
+                pr($vat_class);
+                
+                if ($vat_class) {
+                    $rate = $this->find('first', array(
+                                'fields' => array('rate'),
+                                'conditions' => array(
+                                                'vat_class_id' => $vat_class,
+                                                'start_date <' => $date,
+                                                ),
+                                'order' => array(
+                                                'start_date' => 'desc',
+                                                ),
+                                'recursive' => -1,
+                    ));
+                    
+                    pr('VAT Rate');
+                    pr($rate['VatRate']['rate']);
+                    return $rate['VatRate']['rate'];
+                    
+                } else {
+                    return false;
+                }
+                
+            } else {
+                return false;
+            }
+            
+        }
+
 }
 
