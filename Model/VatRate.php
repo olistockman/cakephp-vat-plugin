@@ -38,14 +38,6 @@ class VatRate extends VatAppModel {
                     'allowEmpty' => false
                 ),
              ),
-             'end_date' => array(
-                'date' => array(
-                    'rule' => array('date', 'ymd'),
-                    'message' => 'A date is required',
-                    'required' => false,
-                    'allowEmpty' => true
-                ),
-             ),
          );  
  
 /**
